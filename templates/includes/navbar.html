@@ -1,0 +1,43 @@
+<nav class="my-nav" id="my-nav">
+    <div class="nav-top-row">
+        <button class="menu-btn" id="menu_btn" onclick="toggle_menu()">|||</button>
+        <h1 class="nav-title">Void</h1>
+    </div>
+    <hr class="hr-nav">
+    <ul class="links">
+        <a href="{% url 'home' %}" class="Link">خانه</a>
+        <a href="{% url 'trends' %}" class="Link">ترندها</a>
+        <a href="{% url 'singers' %}" class="Link">خواننده‌ها</a>
+        <a href="{% url 'sound_effects' %}" class="Link">افکت های صوتی</a>
+        <a href="{% url 'playlist' %}" class="Link">پلی لیست</a>
+        <a href="{% url 'notes' %}" class="Link">نت ها</a>
+        <a href="{% url 'search' %}" class="Link">جستجو</a>
+    </ul>
+
+    {% if user.is_authenticated %}
+
+        <div class="nav-user-actions">
+
+            <a href="{% url 'profile' %}" class="nav-user-profile">
+
+                {% if user.profile.avatar %}
+                    <img src="{{ user.profile.avatar.url }}" alt="پروفایل">
+                {% else %}
+                    <div class="nav-user-avatar">V</div>
+                {% endif %}
+
+            </a>
+
+            <a href="{% url 'logout' %}" class="Link nav-logout">خروج از حساب</a>
+
+        </div>
+
+    {% else %}
+
+        <div class="nav-auth-actions">
+            <a href="{% url 'login' %}" class="Link">ورود</a>
+            <a href="{% url 'register' %}" class="Link">ثبت‌نام</a>
+        </div>
+
+    {% endif %}
+</nav>

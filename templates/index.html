@@ -1,0 +1,243 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}خانه | Home{% endblock %}
+
+{% block content %}
+
+<header>
+    <div class="my-banner">
+        <img src="{% static 'assets/images/BanerPhoto.png' %}" alt="site-banner">
+        <h1 class="text-banner">
+            فراتر از موسیقی... <br>
+            هر آهنگ، سفری است به بخشی از وجودت <br>
+            که شاید فراموشش کرده باشی.
+        </h1>
+    </div>
+</header>
+
+<main>
+
+    <div class="SliderS">
+        <div class="slider-header">
+            <h2>ترندها</h2>
+            <div class="slider-btns">
+                <button class="prev" onclick="goPrev('trending-slider')">&lsaquo;</button>
+                <button class="next" onclick="goNext('trending-slider')">&rsaquo;</button>
+            </div>
+        </div>
+
+        <div class="slider" id="trending-slider">
+            {% for song in trending_songs %}
+                <a class="song-card" href="{% url 'song_detail' song.id %}">
+                    <div class="song-cover">
+                        {% if song.cover %}
+                            <img src="{{ song.cover.url }}" alt="{{ song.title }}">
+                        {% endif %}
+                        <button class="play-btn">▶</button>
+                    </div>
+                    <div class="song-info">
+                        <h3>{{ song.title }}</h3>
+                        <p>{{ song.artist.name }}</p>
+                    </div>
+                </a>
+            {% empty %}
+                <p>هنوز آهنگی برای نمایش در ترندها وجود ندارد.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <br><br>
+
+    <div class="SliderS">
+        <div class="slider-header">
+            <h2>تازه منتشر شده‌ها</h2>
+            <div class="slider-btns">
+                <button class="prev" onclick="goPrev('new-songs-slider')">&lsaquo;</button>
+                <button class="next" onclick="goNext('new-songs-slider')">&rsaquo;</button>
+            </div>
+        </div>
+
+        <div class="slider" id="new-songs-slider">
+            {% for song in new_songs %}
+                <a class="song-card" href="{% url 'song_detail' song.id %}">
+                    <div class="song-cover">
+                        {% if song.cover %}
+                            <img src="{{ song.cover.url }}" alt="{{ song.title }}">
+                        {% endif %}
+                        <button class="play-btn">▶</button>
+                    </div>
+                    <div class="song-info">
+                        <h3>{{ song.title }}</h3>
+                        <p>{{ song.artist.name }}</p>
+                    </div>
+                </a>
+            {% empty %}
+                <p>هنوز آهنگ تازه‌ای منتشر نشده است.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <br><br>
+
+    <div class="SliderS">
+        <div class="slider-header">
+            <h2>محبوب ترین‌ها</h2>
+            <div class="slider-btns">
+                <button class="prev" onclick="goPrev('popular-songs-slider')">&lsaquo;</button>
+                <button class="next" onclick="goNext('popular-songs-slider')">&rsaquo;</button>
+            </div>
+        </div>
+
+        <div class="slider" id="popular-songs-slider">
+            {% for song in popular_songs %}
+                <a class="song-card" href="{% url 'song_detail' song.id %}">
+                    <div class="song-cover">
+                        {% if song.cover %}
+                            <img src="{{ song.cover.url }}" alt="{{ song.title }}">
+                        {% endif %}
+                        <button class="play-btn">▶</button>
+                    </div>
+                    <div class="song-info">
+                        <h3>{{ song.title }}</h3>
+                        <p>{{ song.artist.name }}</p>
+                    </div>
+                </a>
+            {% empty %}
+                <p>هنوز آهنگی برای نمایش وجود ندارد.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <br><br>
+
+    <div class="SliderS">
+        <div class="slider-header">
+            <h2>خواننده های محبوب</h2>
+            <div class="slider-btns">
+                <button class="prev" onclick="goPrev('singers-slider')">&lsaquo;</button>
+                <button class="next" onclick="goNext('singers-slider')">&rsaquo;</button>
+            </div>
+        </div>
+
+        <div class="singers-slider" id="singers-slider">
+            {% for artist in popular_artists %}
+                <a href="{% url 'artist_detail' artist.id %}" class="singer-card">
+                    <div class="singer-cover">
+                        {% if artist.image %}
+                            <img src="{{ artist.image.url }}" alt="{{ artist.name }}">
+                        {% endif %}
+                        <button class="play-btn">▶</button>
+                    </div>
+                    <div class="singer-info">
+                        <h3>{{ artist.name }}</h3>
+                    </div>
+                </a>
+            {% empty %}
+                <p>هنوز خواننده‌ای ثبت نشده است.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <br><br>
+
+    <div class="SliderS">
+        <div class="slider-header">
+            <h2>پیشنهادی (خارجی)</h2>
+            <div class="slider-btns">
+                <button class="prev" onclick="goPrev('recommended-slider')">&lsaquo;</button>
+                <button class="next" onclick="goNext('recommended-slider')">&rsaquo;</button>
+            </div>
+        </div>
+
+        <div class="slider" id="recommended-slider">
+            {% for song in foreign_songs %}
+                <a class="song-card" href="{% url 'song_detail' song.id %}">
+                    <div class="song-cover">
+                        {% if song.cover %}
+                            <img src="{{ song.cover.url }}" alt="{{ song.title }}">
+                        {% endif %}
+                        <button class="play-btn">▶</button>
+                    </div>
+                    <div class="song-info">
+                        <h3>{{ song.title }}</h3>
+                        <p>{{ song.artist.name }}</p>
+                    </div>
+                </a>
+            {% empty %}
+                <p>هنوز آهنگ خارجی ثبت نشده است.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <br><br>
+
+    <div class="SliderS">
+        <div class="slider-header">
+            <h2>پیشنهادی (فارسی)</h2>
+            <div class="slider-btns">
+                <button class="prev" onclick="goPrev('persian-slider')">&lsaquo;</button>
+                <button class="next" onclick="goNext('persian-slider')">&rsaquo;</button>
+            </div>
+        </div>
+
+        <div class="slider" id="persian-slider">
+            {% for song in persian_songs %}
+                <a class="song-card" href="{% url 'song_detail' song.id %}">
+                    <div class="song-cover">
+                        {% if song.cover %}
+                            <img src="{{ song.cover.url }}" alt="{{ song.title }}">
+                        {% endif %}
+                        <button class="play-btn">▶</button>
+                    </div>
+                    <div class="song-info">
+                        <h3>{{ song.title }}</h3>
+                        <p>{{ song.artist.name }}</p>
+                    </div>
+                </a>
+            {% empty %}
+                <p>هنوز آهنگ فارسی ثبت نشده است.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <br><br>
+
+    <div class="SliderS">
+        <div class="slider-header">
+            <h2>افکت‌های صوتی</h2>
+            <div class="slider-btns">
+                <button class="prev" onclick="goPrev('sound-effects-slider')">&lsaquo;</button>
+                <button class="next" onclick="goNext('sound-effects-slider')">&rsaquo;</button>
+            </div>
+        </div>
+
+        <div class="slider" id="sound-effects-slider">
+            {% for effect in sound_effects %}
+                <div class="sound-effects-card">
+                    <div class="sound-effects-cover">
+                        {% if effect.cover %}
+                            <img src="{{ effect.cover.url }}" alt="{{ effect.title }}">
+                        {% else %}
+                            <img src="{% static 'assets/images/soundEffect.png' %}" alt="{{ effect.title }}">
+                        {% endif %}
+                    </div>
+
+                    <div class="song-info">
+                        <h3>{{ effect.title }}</h3>
+                    </div>
+
+                    <audio controls>
+                        <source src="{{ effect.audio_file.url }}">
+                    </audio>
+                </div>
+            {% empty %}
+                <p>هنوز افکت صوتی‌ای ثبت نشده است.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+</main>
+
+{% endblock %}
+

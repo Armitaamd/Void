@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}ساخت پلی‌لیست | Void{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<main class="auth-page">
+
+    <h1>ساخت پلی‌لیست جدید</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label>نام پلی‌لیست</label>
+        <input type="text" name="title" placeholder="مثلاً آهنگ‌های موردعلاقه" required>
+
+        <label>توضیحات</label>
+        <textarea name="description" placeholder="درباره پلی‌لیست بنویس..." rows="4"></textarea>
+
+        <label>تصویر کاور</label>
+        <input type="file" name="cover" accept="image/*">
+
+        <button type="submit">ساخت پلی‌لیست</button>
+
+    </form>
+
+    <p>
+        <a href="{% url 'profile' %}">بازگشت به حساب کاربری</a>
+    </p>
+
+</main>
+
+{% endblock %}                                              

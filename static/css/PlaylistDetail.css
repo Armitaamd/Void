@@ -1,0 +1,226 @@
+.playlist-detail-page {
+    direction: rtl;
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 25px;
+    color: #f1edf7;
+}
+
+/* ====================== Playlist Header ====================== */
+
+.playlist-detail-header {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    padding: 35px;
+    background: linear-gradient(135deg, #30233e, #19151f);
+    border: 1px solid #49365e;
+    border-radius: 22px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.playlist-detail-header img,
+.playlist-detail-placeholder {
+    width: 230px;
+    height: 230px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 18px;
+}
+
+.playlist-detail-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #69468b, #211a2b);
+    color: #e0ccff;
+    font-size: 85px;
+}
+
+.playlist-detail-header h1 {
+    font-size: 34px;
+    margin-bottom: 15px;
+}
+
+.playlist-detail-header p {
+    color: #b8afc2;
+    line-height: 2;
+    margin-bottom: 20px;
+}
+
+.playlist-detail-header span {
+    color: #c5a2ff;
+    font-size: 14px;
+}
+
+/* ====================== Playlist Songs Section ====================== */
+
+.playlist-detail-songs {
+    margin-top: 45px;
+    padding: 30px;
+    background: #19171f;
+    border: 1px solid #302b39;
+    border-radius: 20px;
+}
+
+.playlist-detail-songs h2 {
+    font-size: 22px;
+    margin-bottom: 25px;
+    padding-right: 13px;
+    border-right: 4px solid #a78bfa;
+}
+
+/* ====================== Playlist Song ====================== */
+
+.playlist-song {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 16px 18px;
+    border: 1px solid #30283b;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    background: #17131f;
+    transition: 0.3s;
+}
+
+.playlist-song:hover {
+    background: #211a2c;
+    border-color: #7650a5;
+    box-shadow: 0 0 18px rgba(167, 139, 250, 0.12);
+}
+
+/* ====================== Song Information ====================== */
+
+.playlist-song-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.playlist-song-info a {
+    color: #eee7f7;
+    text-decoration: none;
+    font-size: 16px;
+    transition: 0.25s;
+}
+
+.playlist-song-info a:hover {
+    color: #c5a2ff;
+}
+
+.playlist-song-info span {
+    color: #92869f;
+    font-size: 13px;
+}
+
+/* ====================== Delete Song Button ====================== */
+
+.playlist-song form {
+    margin: 0;
+}
+
+.delete-song-btn {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #713044;
+    border-radius: 13px;
+    background: rgba(100, 25, 48, 0.12);
+    color: #e76b83;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.delete-song-btn svg {
+    width: 21px;
+    height: 21px;
+}
+
+.delete-song-btn:hover {
+    background: #8f2947;
+    border-color: #e76b83;
+    color: white;
+    box-shadow: 0 0 18px rgba(231, 107, 131, 0.3);
+    transform: scale(1.06);
+}
+
+/* ====================== Back To Profile Button ====================== */
+
+.back-to-profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    margin-bottom: 30px;
+    margin-right: auto;
+    margin-left: 0;
+
+    padding: 11px 20px;
+
+    color: #c5a2ff;
+    background: rgba(112, 75, 160, 0.12);
+    border: 1px solid rgba(170, 130, 220, 0.25);
+    border-radius: 12px;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-to-profile svg {
+    width: 19px;
+    height: 19px;
+    transition: transform 0.3s ease;
+}
+
+.back-to-profile:hover {
+    color: #fff;
+    background: rgba(112, 75, 160, 0.25);
+    border-color: rgba(190, 150, 240, 0.5);
+    box-shadow: 0 0 16px rgba(167, 139, 250, 0.2);
+}
+
+.back-to-profile:hover svg {
+    transform: translateX(-4px);
+}
+
+/* ====================== Responsive Design ====================== */
+
+@media (max-width: 600px) {
+    .playlist-detail-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .playlist-detail-header img,
+    .playlist-detail-placeholder {
+        width: 100%;
+        height: 230px;
+    }
+
+    .playlist-detail-header h1 {
+        font-size: 26px;
+    }
+
+    .playlist-detail-songs {
+        padding: 20px 15px;
+    }
+}
+
+@media (max-width: 500px) {
+    .playlist-song {
+        padding: 13px 10px;
+    }
+
+    .delete-song-btn {
+        width: 40px;
+        height: 40px;
+    }
+}

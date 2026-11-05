@@ -1,0 +1,407 @@
+.trends-page {
+    width: 90%;
+    max-width: 1250px;
+    margin: 50px auto;
+    color: #fff;
+}
+
+/* ====================== Trends Header ====================== */
+
+.trends-header {
+    margin-bottom: 40px;
+}
+
+.trends-label {
+    color: #a78bfa;
+    font-size: 13px;
+    letter-spacing: 4px;
+    font-weight: bold;
+}
+
+.trends-header h1 {
+    font-size: 42px;
+    margin: 12px 0;
+}
+
+.trends-header p {
+    color: #aaa;
+    font-size: 14px;
+}
+
+/* ====================== Featured Song ====================== */
+
+.featured-song {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 30px;
+    margin-bottom: 55px;
+    border-radius: 22px;
+    background: linear-gradient(120deg, #29213d, #15131d);
+    border: 1px solid #393047;
+}
+
+.featured-cover {
+    width: 260px;
+    height: 260px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.featured-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.featured-info {
+    flex: 1;
+}
+
+.featured-rank {
+    color: #b99cff;
+    font-size: 14px;
+    letter-spacing: 3px;
+}
+
+.featured-info h2 {
+    font-size: 32px;
+    margin: 15px 0 8px;
+}
+
+.featured-info p {
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+.featured-plays {
+    color: #c4a7ff;
+    font-size: 14px;
+}
+
+/* ====================== Ranking List ====================== */
+
+.ranking-section h2 {
+    font-size: 25px;
+    margin-bottom: 25px;
+}
+
+.ranking-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ranking-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 14px 20px;
+    border-radius: 14px;
+    background: #19171f;
+    border: 1px solid #292630;
+    transition: 0.25s;
+    text-decoration: none;
+    color: #fff;
+}
+
+.ranking-item:hover {
+    background: #272130;
+    transform: translateX(-5px);
+    border-color: #8062b5;
+}
+
+.ranking-number {
+    width: 35px;
+    text-align: center;
+    color: #aaa;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.ranking-cover {
+    width: 65px;
+    height: 65px;
+    border-radius: 10px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.ranking-info {
+    flex: 1;
+}
+
+.ranking-info h3 {
+    font-size: 16px;
+    margin-bottom: 7px;
+}
+
+.ranking-info p {
+    color: #999;
+    font-size: 13px;
+}
+
+.ranking-plays {
+    color: #b99cff;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.trends-empty {
+    text-align: center;
+    padding: 45px 20px;
+    color: #aaa;
+    background: #19171f;
+    border-radius: 15px;
+}
+
+/* ====================== New Releases ====================== */
+
+.new-releases-section {
+    margin-top: 65px;
+}
+
+.new-releases-section h2 {
+    font-size: 25px;
+    margin-bottom: 25px;
+}
+
+.new-releases-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 18px;
+}
+
+.new-release-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: #19171f;
+    border: 1px solid #292630;
+    border-radius: 15px;
+    text-decoration: none;
+    color: #fff;
+    transition: 0.25s;
+}
+
+.new-release-card:hover {
+    background: #272130;
+    border-color: #8062b5;
+    transform: translateY(-4px);
+}
+
+.new-release-card img {
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.new-release-card h3 {
+    font-size: 15px;
+    margin-bottom: 7px;
+}
+
+.new-release-card p {
+    color: #aaa;
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.new-release-card span {
+    color: #b99cff;
+    font-size: 11px;
+}
+
+/* ====================== Void Picks ====================== */
+
+.void-picks-section {
+    margin-top: 70px;
+    padding: 30px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, #211a30, #15131d);
+    border: 1px solid #393047;
+}
+
+.void-picks-header {
+    margin-bottom: 30px;
+}
+
+.void-picks-header span {
+    color: #b99cff;
+    font-size: 12px;
+    letter-spacing: 4px;
+    font-weight: bold;
+}
+
+.void-picks-header h2 {
+    font-size: 28px;
+    margin: 12px 0;
+}
+
+.void-picks-header p {
+    color: #aaa;
+    font-size: 14px;
+}
+
+.void-picks-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 15px;
+}
+
+.void-pick-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 15px;
+    background: #19171f;
+    border: 1px solid #302a3b;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.25s;
+}
+
+.void-pick-card:hover {
+    background: #30263f;
+    border-color: #a78bfa;
+    transform: translateY(-4px);
+}
+
+.void-pick-card img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.void-pick-info {
+    flex: 1;
+}
+
+.void-pick-info h3 {
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+.void-pick-info p {
+    color: #aaa;
+    font-size: 13px;
+}
+
+.void-pick-icon {
+    color: #c4a7ff;
+    font-size: 23px;
+}
+
+.void-picks-empty {
+    color: #aaa;
+    font-size: 14px;
+    padding: 20px 0;
+}
+
+/* ====================== Back Button ====================== */
+
+.trends-back-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    margin-bottom: 30px;
+    margin-right: auto;
+    margin-left: 0;
+    position: relative;
+    right: auto;
+    left: 0;
+    background: rgba(112, 75, 160, 0.12);
+    border: 1px solid rgba(170, 130, 220, 0.25);
+    border-radius: 12px;
+    color: #d8c4f5;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.trends-back-btn span {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.trends-back-btn:hover {
+    background: rgba(112, 75, 160, 0.25);
+    border-color: rgba(190, 150, 240, 0.5);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(130, 80, 190, 0.15);
+}
+
+.trends-back-btn:hover span {
+    transform: translateX(4px);
+}
+
+/* ====================== Responsive Design ====================== */
+
+@media (max-width: 700px) {
+
+    .trends-page {
+        width: 94%;
+        margin: 30px auto;
+    }
+
+    .trends-header h1 {
+        font-size: 30px;
+    }
+
+    .featured-song {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+        padding: 22px;
+    }
+
+    .featured-cover {
+        width: 200px;
+        height: 200px;
+    }
+
+    .featured-info h2 {
+        font-size: 25px;
+    }
+
+    .ranking-item {
+        gap: 10px;
+        padding: 12px;
+    }
+
+    .ranking-cover {
+        width: 52px;
+        height: 52px;
+    }
+
+    .ranking-number {
+        width: 25px;
+        font-size: 15px;
+    }
+
+    .ranking-info h3 {
+        font-size: 14px;
+    }
+
+    .ranking-plays {
+        font-size: 11px;
+    }
+
+    .new-releases-list,
+    .void-picks-list {
+        grid-template-columns: 1fr;
+    }
+
+    .void-picks-section {
+        padding: 20px;
+    }
+}

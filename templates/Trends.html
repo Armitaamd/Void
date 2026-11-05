@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}ترندها | Void{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/trends.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<main class="trends-page">
+
+    <button type="button" class="back-to-profile" onclick="history.back()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5"/>
+            <path d="M12 19l-7-7 7-7"/>
+        </svg>
+        <span>بازگشت</span>
+    </button>
+
+    <header class="trends-header">
+        <span class="trends-label">VOID MUSIC CHART</span>
+        <h1>ترندهای این هفته</h1>
+        <p>آهنگ‌هایی که این روزها بیشتر شنیده شده‌اند.</p>
+    </header>
+
+    {% if trending_songs %}
+
+        {% for song in trending_songs %}
+
+            {% if forloop.first %}
+
+                <section class="featured-song">
+
+                    {% if song.cover %}
+                        <div class="featured-cover">
+                            <img src="{{ song.cover.url }}" alt="{{ song.title }}">
+                        </div>
+                    {% endif %}
+
+                    <div class="featured-info">
+                        <span class="featured-rank"># 01 — TOP TREND</span>
+
+                        <h2>{{ song.title }}</h2>
+
+                        <p>{{ song.artist.name }}</p>
+
+                        <span class="featured-plays">
+                            {{ song.play_count }} بار پخش در ۷ روز گذشته
+                        </span>
+
+                    </div>
+
+                </section>
+
+            {% endif %}
+
+        {% endfor %}
+
+        <section class="ranking-section">
+
+            <h2>رتبه‌بندی آهنگ‌ها</h2>
+
+            <div class="ranking-list">
+
+                {% for song in trending_songs %}
+
+                    <a class="ranking-item" href="{% url 'song_detail' song.id %}">
+
+                        <span class="ranking-number">
+                            {{ forloop.counter }}
+                        </span>
+
+                        {% if song.cover %}
+                            <img class="ranking-cover"
+                                 src="{{ song.cover.url }}"
+                                 alt="{{ song.title }}">
+                        {% endif %}
+
+                        <div class="ranking-info">
+                            <h3>{{ song.title }}</h3>
+                            <p>{{ song.artist.name }}</p>
+                        </div>
+
+                        <span class="ranking-plays">
+                            {{ song.play_count }} بار پخش
+                        </span>
+
+                    </a>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+        <section class="new-releases-section">
+
+            <h2>تازه منتشر شده‌ها</h2>
+
+            <div class="new-releases-list">
+
+                {% for song in new_releases %}
+
+                    <a class="new-release-card" href="{% url 'song_detail' song.id %}">
+
+                        {% if song.cover %}
+                            <img src="{{ song.cover.url }}" alt="{{ song.title }}">
+                        {% endif %}
+
+                        <div>
+                            <h3>{{ song.title }}</h3>
+                            <p>{{ song.artist.name }}</p>
+                            <span>{{ song.release_date|date:"Y/m/d" }}</span>
+                        </div>
+
+                    </a>
+
+                {% empty %}
+
+                    <p>هنوز انتشار جدیدی ثبت نشده است.</p>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+        <section class="void-picks-section">
+
+            <div class="void-picks-header">
+                <span>EXCLUSIVE SELECTION</span>
+                <h2>انتخاب ویژه Void</h2>
+                <p>آهنگ‌هایی که با سلیقه‌ی Void انتخاب شده‌اند.</p>
+            </div>
+
+            <div class="void-picks-list">
+
+                {% for song in void_picks %}
+
+                    <a class="void-pick-card" href="{% url 'song_detail' song.id %}">
+
+                        {% if song.cover %}
+                            <img src="{{ song.cover.url }}" alt="{{ song.title }}">
+                        {% endif %}
+
+                        <div class="void-pick-info">
+                            <h3>{{ song.title }}</h3>
+                            <p>{{ song.artist.name }}</p>
+                        </div>
+
+                        <span class="void-pick-icon">✦</span>
+
+                    </a>
+
+                {% empty %}
+
+                    <p class="void-picks-empty">
+                        هنوز آهنگی برای انتخاب ویژه ثبت نشده است.
+                    </p>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+    {% else %}
+
+        <div class="trends-empty">
+            هنوز آهنگی در این هفته ترند نشده است.
+        </div>
+
+    {% endif %}
+
+</main>
+
+{% endblock %}

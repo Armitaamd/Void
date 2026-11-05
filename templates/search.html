@@ -1,0 +1,87 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}جستجو | Void{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<main class="search-page">
+    <main class="search-page">
+
+    <button type="button" class="back-to-profile" onclick="history.back()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5"/>
+            <path d="M12 19l-7-7 7-7"/>
+        </svg>
+        <span>بازگشت</span>
+    </button>
+
+    <section class="search-header">
+        <h1>جستجو در Void</h1>
+        <p>آهنگ یا خواننده موردنظرت رو پیدا کن.</p>
+
+        <form method="GET" action="{% url 'search' %}" class="search-form">
+            <input
+                type="text"
+                name="q"
+                placeholder="نام آهنگ یا خواننده..."
+                value="{{ query }}"
+            >
+            <button type="submit">جستجو</button>
+        </form>
+    </section>
+
+    {% if query %}
+
+        <section class="search-results">
+
+            <h2>آهنگ‌ها</h2>
+
+            {% for song in songs %}
+                <a href="{% url 'song_detail' song.id %}" class="search-result">
+                    {% if song.cover %}
+                        <img src="{{ song.cover.url }}" alt="{{ song.title }}">
+                    {% else %}
+                        <div class="search-placeholder">♫</div>
+                    {% endif %}
+
+                    <div>
+                        <h3>{{ song.title }}</h3>
+                        <p>{{ song.artist.name }}</p>
+                    </div>
+                </a>
+            {% empty %}
+                <p>آهنگی پیدا نشد.</p>
+            {% endfor %}
+
+            <h2>خواننده‌ها</h2>
+
+            {% for artist in artists %}
+                <a href="{% url 'artist_detail' artist.id %}" class="search-result">
+                    {% if artist.image %}
+                        <img src="{{ artist.image.url }}" alt="{{ artist.name }}">
+                    {% else %}
+                        <div class="search-placeholder">♫</div>
+                    {% endif %}
+
+                    <div>
+                        <h3>{{ artist.name }}</h3>
+                    </div>
+                </a>
+            {% empty %}
+                <p>خواننده‌ای پیدا نشد.</p>
+            {% endfor %}
+
+        </section>
+
+    {% endif %}
+
+</main>
+
+{% endblock %}

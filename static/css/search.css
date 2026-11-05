@@ -1,0 +1,146 @@
+.search-page {
+    width: 90%;
+    max-width: 1100px;
+    margin: 70px auto;
+    color: #fff;
+}
+
+/* ====================== Search Header ====================== */
+
+.search-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.search-header h1 {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.search-header p {
+    color: #aaa;
+    margin-bottom: 30px;
+}
+
+/* ====================== Search Form ====================== */
+
+.search-form {
+    display: flex;
+    max-width: 650px;
+    margin: auto;
+    gap: 12px;
+}
+
+.search-form input {
+    flex: 1;
+    padding: 15px 20px;
+    border: 1px solid #393044;
+    border-radius: 12px;
+    background: #17131e;
+    color: #fff;
+    outline: none;
+    font-family: inherit;
+}
+
+.search-form input:focus {
+    border-color: #9470c7;
+}
+
+.search-form button {
+    padding: 0 28px;
+    border: none;
+    border-radius: 12px;
+    background: #7650a5;
+    color: #fff;
+    cursor: pointer;
+    font-family: inherit;
+    transition: 0.3s;
+}
+
+.search-form button:hover {
+    background: #916bc1;
+}
+
+/* ====================== Search Results ====================== */
+
+.search-results {
+    margin-top: 40px;
+}
+
+.search-results h2 {
+    font-size: 21px;
+    margin: 35px 0 20px;
+}
+
+.search-results > p {
+    color: #999;
+    margin: 15px 5px;
+}
+
+/* ====================== Search Result Card ====================== */
+
+.search-result {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 14px;
+    margin-bottom: 12px;
+    border: 1px solid #292231;
+    border-radius: 14px;
+    background: #17131e;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.search-result:hover {
+    background: #211a2b;
+    border-color: #7650a5;
+}
+
+/* ====================== Search Result Image ====================== */
+
+.search-result img,
+.search-placeholder {
+    width: 65px;
+    height: 65px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.search-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #292033;
+    color: #a987d1;
+    font-size: 25px;
+}
+
+/* ====================== Search Result Info ====================== */
+
+.search-result h3 {
+    font-size: 16px;
+    margin-bottom: 7px;
+}
+
+.search-result p {
+    color: #aaa;
+    font-size: 13px;
+}
+
+/* ====================== Responsive Design ====================== */
+
+@media (max-width: 600px) {
+    .search-form {
+        flex-direction: column;
+    }
+
+    .search-form button {
+        padding: 14px;
+    }
+
+    .search-header h1 {
+        font-size: 25px;
+    }
+}

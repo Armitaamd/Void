@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}حساب کاربری | Void{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/Profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="profile-container">
+
+    <div class="profile-back">
+        <button type="button" class="back-to-profile" onclick="history.back()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5"/>
+                <path d="M12 19l-7-7 7-7"/>
+            </svg>
+            <span>بازگشت</span>
+        </button>
+    </div>
+
+<main class="profile-page">
+
+    <section class="profile-header">
+
+        {% if profile.avatar %}
+            <img class="profile-avatar" src="{{ profile.avatar.url }}" alt="عکس پروفایل">
+        {% else %}
+            <div class="profile-avatar-placeholder">
+                {{ user.username|first|upper }}
+            </div>
+        {% endif %}
+
+        <div class="profile-info">
+            <h1>{{ user.username }}</h1>
+            <p>{{ user.first_name|default:"نامی ثبت نشده" }}</p>
+            <p>{{ user.email }}</p>
+        </div>
+
+    </section>
+
+    <section class="profile-edit">
+
+        <h2>ویرایش اطلاعات حساب</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <label>نام</label>
+            <input type="text" name="first_name" value="{{ user.first_name }}">
+
+            <label>ایمیل</label>
+            <input type="email" name="email" value="{{ user.email }}">
+
+            <label>عکس پروفایل</label>
+            <input type="file" name="avatar" accept="image/*">
+
+            <button type="submit">ذخیره تغییرات</button>
+
+        </form>
+
+        <a class="profile-logout" href="{% url 'logout' %}">خروج از حساب</a>
+
+    </section>
+
+    <section class="profile-playlists">
+
+        <div class="playlists-heading">
+            <h2>پلی‌لیست‌های من</h2>
+
+            <a href="{% url 'create_playlist' %}">
+                + ساخت پلی‌لیست جدید
+            </a>
+        </div>
+
+        <div class="playlists-container">
+
+            {% for item in user_playlists %}
+
+                <a href="{% url 'playlist_detail' item.id %}" class="playlist-card">
+
+                    {% if item.cover %}
+                        <img src="{{ item.cover.url }}" alt="{{ item.title }}">
+                    {% else %}
+                        <div class="playlist-placeholder">♫</div>
+                    {% endif %}
+
+                    <h3>{{ item.title }}</h3>
+
+                    <p>{{ item.description }}</p>
+
+                    <span>{{ item.songs.count }} آهنگ</span>
+
+                </a>
+
+            {% empty %}
+
+                <p class="empty-playlists">
+                    هنوز پلی‌لیستی نساخته‌ای.
+                </p>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <section class="profile-playlists liked-playlists">
+
+        <div class="playlists-heading">
+            <h2>پلی‌لیست‌هایی که پسندیده‌ام</h2>
+        </div>
+
+        <div class="playlists-container">
+
+
+            {% for item in liked_playlists %}
+
+                <div class="playlist-card">
+
+                    <a href="{% url 'playlist_detail' item.id %}" class="playlist-card-link">
+
+                        {% if item.cover %}
+                            <img src="{{ item.cover.url }}" alt="{{ item.title }}">
+                        {% else %}
+                            <div class="playlist-placeholder">♫</div>
+                        {% endif %}
+
+                        <h3>{{ item.title }}</h3>
+
+                        <p>{{ item.description }}</p>
+
+                        <span>{{ item.songs.count }} آهنگ</span>
+
+                    </a>
+
+                    <form method="POST" action="{% url 'toggle_playlist_like' item.id %}" class="playlist-like-form">
+                        {% csrf_token %}
+
+                        <button type="button"
+                                class="playlist-like-btn liked"
+                                data-url="{% url 'toggle_playlist_like' item.id %}">
+                            <span>♥</span>
+                            <span class="like-count">{{ item.likes.count }}</span>
+                        </button>
+                    </form>
+
+                </div>
+
+            {% empty %}
+
+                <p class="empty-playlists">
+                    هنوز هیچ پلی‌لیستی رو نپسندیده‌ای.
+                </p>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+    </main>
+
+</div>
+
+{% endblock %}

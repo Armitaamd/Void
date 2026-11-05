@@ -1,0 +1,268 @@
+.playlist-page {
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 50px 0 90px;
+}
+
+/* ====================== Back Button ====================== */
+
+.playlist-back-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    margin-bottom: 35px;
+    margin-right: auto;
+    margin-left: 0;
+
+    background: rgba(112, 75, 160, 0.12);
+    border: 1px solid rgba(170, 130, 220, 0.25);
+    border-radius: 12px;
+
+    color: #d8c4f5;
+    font-family: inherit;
+    font-size: 14px;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.playlist-back-btn span {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.playlist-back-btn:hover {
+    background: rgba(112, 75, 160, 0.25);
+    border-color: rgba(190, 150, 240, 0.5);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(130, 80, 190, 0.15);
+}
+
+.playlist-back-btn:hover span {
+    transform: translateX(4px);
+}
+
+/* ====================== Playlist Header ====================== */
+
+.playlist-header {
+    text-align: center;
+    margin-bottom: 65px;
+}
+
+.playlist-header > span {
+    color: #a98bd2;
+    font-size: 12px;
+    letter-spacing: 4px;
+}
+
+.playlist-header h1 {
+    color: #f4edff;
+    font-size: 36px;
+    margin: 18px 0 12px;
+}
+
+.playlist-header p {
+    color: #a69bb5;
+    font-size: 14px;
+}
+
+/* ====================== Section Title ====================== */
+
+.playlist-section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+}
+
+.playlist-section-title h2 {
+    color: #eee5fa;
+    font-size: 22px;
+}
+
+.playlist-section-title span {
+    color: #a98bd2;
+    font-size: 13px;
+}
+
+/* ====================== Playlist Grid ====================== */
+
+.playlist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 28px;
+}
+
+/* ====================== Playlist Card ====================== */
+
+.playlist-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    min-width: 0;
+    transition: transform 0.3s ease;
+}
+
+.playlist-card:hover {
+    transform: translateY(-7px);
+}
+
+.playlist-card-link {
+    display: block;
+    text-decoration: none;
+}
+
+/* ====================== Playlist Cover ====================== */
+
+.playlist-cover {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    overflow: hidden;
+    border-radius: 17px;
+    background: linear-gradient(145deg, #211832, #100b1b);
+    border: 1px solid rgba(169, 139, 210, 0.15);
+}
+
+.playlist-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.playlist-card:hover .playlist-cover img {
+    transform: scale(1.07);
+}
+
+.playlist-no-cover {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c5a8ed;
+    font-size: 30px;
+    letter-spacing: 8px;
+    background: radial-gradient(circle, #38234f, #110c1d);
+}
+
+.playlist-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(12, 7, 20, 0.65);
+    color: white;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.playlist-card:hover .playlist-overlay {
+    opacity: 1;
+}
+
+/* ====================== Playlist Info ====================== */
+
+.playlist-info {
+    padding: 15px 4px;
+}
+
+.playlist-info h3 {
+    color: #eee5fa;
+    font-size: 16px;
+    margin: 0 0 8px;
+}
+
+.playlist-info p {
+    color: #a69bb5;
+    font-size: 12px;
+    margin: 0;
+}
+
+/* ====================== Like Button ====================== */
+
+.playlist-like-form {
+    margin-top: auto;
+    padding: 0 4px 12px;
+}
+
+.playlist-like-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 13px;
+
+    color: #b8a2d5;
+    background: rgba(112, 75, 160, 0.12);
+    border: 1px solid rgba(170, 130, 220, 0.2);
+    border-radius: 10px;
+
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.playlist-like-btn span:first-child {
+    font-size: 17px;
+}
+
+.playlist-like-btn:hover,
+.playlist-like-btn.liked {
+    color: #f08ab0;
+    background: rgba(190, 70, 120, 0.12);
+    border-color: rgba(240, 138, 176, 0.4);
+}
+
+.playlist-like-btn.liked span:first-child {
+    color: #f08ab0;
+}
+
+/* ====================== Empty Playlist ====================== */
+
+.playlist-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 75px 20px;
+    border: 1px solid rgba(169, 139, 210, 0.15);
+    border-radius: 18px;
+    background: linear-gradient(145deg, #171126, #0e0a18);
+}
+
+.playlist-empty span {
+    color: #b18bdf;
+    font-size: 30px;
+}
+
+.playlist-empty h3 {
+    color: #eee5fa;
+    margin: 15px 0 10px;
+}
+
+.playlist-empty p {
+    color: #a69bb5;
+    font-size: 13px;
+}
+
+/* ====================== Responsive Design ====================== */
+
+@media (max-width: 600px) {
+    .playlist-page {
+        width: 92%;
+        padding-top: 30px;
+    }
+
+    .playlist-header h1 {
+        font-size: 27px;
+    }
+
+    .playlist-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+}

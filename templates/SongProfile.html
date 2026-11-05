@@ -1,0 +1,237 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}{{ song.title }} | Void{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/SongProfile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<main class="song-profile">
+    <button type="button" class="back-to-profile" onclick="history.back()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5"/>
+            <path d="M12 19l-7-7 7-7"/>
+        </svg>
+        <span>بازگشت</span>
+    </button>
+
+    <section class="song-main">
+
+        {% if song.cover %}
+            <img src="{{ song.cover.url }}" alt="{{ song.title }}">
+        {% endif %}
+
+        <div>
+            <h1>{{ song.title }}</h1>
+
+            <a class="artistProfile" href="{% url 'artist_detail' song.artist.id %}">
+                <h2>{{ song.artist.name }}</h2>
+            </a>
+
+            {% if song.audio_file %}
+                <div class="void-player">
+
+                    <audio id="void-audio" preload="metadata">
+                        <source src="{{ song.audio_file.url }}" type="audio/mpeg">
+                        مرورگر شما از پخش صوت پشتیبانی نمی‌کند.
+                    </audio>
+
+                    <div class="player-controls">
+
+                        <button type="button" id="play-btn" class="player-play-btn" aria-label="پخش آهنگ">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </button>
+
+                        <div class="player-info">
+
+                            <div class="player-progress">
+                                <span id="current-time">00:00</span>
+
+                                <input type="range" id="progress-bar" min="0" max="100" value="0">
+
+                                <span id="duration">00:00</span>
+                            </div>
+
+                            <div class="player-bottom">
+
+                                <div class="player-volume">
+                                    <span>صدا</span>
+                                    <input type="range" id="volume-bar" min="0" max="1" step="0.01" value="1">
+                                </div>
+
+                                <a href="{{ song.audio_file.url }}" download class="player-download">
+                                    دانلود آهنگ
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            {% endif %}
+
+            {% if user.is_authenticated %}
+                <form method="POST" action="{% url 'add_song_to_playlist' song.id %}">
+                    {% csrf_token %}
+
+                    <select name="playlist_id" required>
+                        <option value="">انتخاب پلی‌لیست</option>
+                        {% for item in user.playlists.all %}
+                            <option value="{{ item.id }}">{{ item.title }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <button type="submit">افزودن به پلی‌لیست</button>
+                </form>
+            {% endif %}
+        </div>
+
+    </section>
+
+    <section>
+        <h2>آهنگ‌های دیگر این خواننده</h2>
+
+        {% for item in artist_songs %}
+            <div class="song-card">
+
+                {% if item.cover %}
+                    <img src="{{ item.cover.url }}" alt="{{ item.title }}">
+                {% endif %}
+
+                <h3>{{ item.title }}</h3>
+                <a href="{% url 'song_detail' item.id %}">مشاهده آهنگ</a>
+
+            </div>
+        {% empty %}
+            <p class="empty">آهنگ دیگری از این خواننده ثبت نشده است.</p>
+        {% endfor %}
+    </section>
+
+    <section>
+        <h2>آهنگ‌های مشابه</h2>
+
+        {% for item in similar_songs %}
+            <div class="song-card">
+
+                {% if item.cover %}
+                    <img src="{{ item.cover.url }}" alt="{{ item.title }}">
+                {% endif %}
+
+                <h3>{{ item.title }}</h3>
+                <p>{{ item.artist.name }}</p>
+                <a href="{% url 'song_detail' item.id %}">مشاهده آهنگ</a>
+
+            </div>
+        {% empty %}
+            <p class="empty">هنوز آهنگ مشابهی ثبت نشده است.</p>
+        {% endfor %}
+    </section>
+
+    <form id="play-form">
+        {% csrf_token %}
+    </form>
+
+</main>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    const audioPlayer = document.getElementById('void-audio');
+    const playBtn = document.getElementById('play-btn');
+    const progressBar = document.getElementById('progress-bar');
+    const currentTime = document.getElementById('current-time');
+    const duration = document.getElementById('duration');
+    const volumeBar = document.getElementById('volume-bar');
+    const playForm = document.getElementById('play-form');
+
+    let playRecorded = false;
+
+    function formatTime(seconds) {
+        if (!Number.isFinite(seconds)) {
+            return '00:00';
+        }
+
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = Math.floor(seconds % 60);
+
+        return String(minutes).padStart(2, '0') + ':' +
+            String(remainingSeconds).padStart(2, '0');
+    }
+
+    if (audioPlayer) {
+
+        audioPlayer.addEventListener('loadedmetadata', function () {
+            duration.textContent = formatTime(audioPlayer.duration);
+        });
+
+        playBtn.addEventListener('click', function () {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+            } else {
+                audioPlayer.pause();
+            }
+        });
+
+        audioPlayer.addEventListener('play', function () {
+
+            playBtn.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6 5h4v14H6zM14 5h4v14h-4z"/>
+                </svg>
+            `;
+
+            if (!playRecorded) {
+                playRecorded = true;
+
+                fetch("{% url 'record_song_play' song.id %}", {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': playForm.querySelector('[name=csrfmiddlewaretoken]').value
+                    }
+                });
+            }
+        });
+
+        audioPlayer.addEventListener('pause', function () {
+            playBtn.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+            `;
+        });
+
+        audioPlayer.addEventListener('timeupdate', function () {
+            currentTime.textContent = formatTime(audioPlayer.currentTime);
+
+            if (audioPlayer.duration) {
+                progressBar.value =
+                    (audioPlayer.currentTime / audioPlayer.duration) * 100;
+            }
+        });
+
+        progressBar.addEventListener('input', function () {
+            if (audioPlayer.duration) {
+                audioPlayer.currentTime =
+                    (progressBar.value / 100) * audioPlayer.duration;
+            }
+        });
+
+        volumeBar.addEventListener('input', function () {
+            audioPlayer.volume = volumeBar.value;
+        });
+
+        audioPlayer.addEventListener('ended', function () {
+            progressBar.value = 0;
+        });
+    }
+</script>
+{% endblock %}

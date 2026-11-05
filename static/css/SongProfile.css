@@ -1,0 +1,432 @@
+.song-profile {
+    width: 90%;
+    max-width: 1250px;
+    margin: 55px auto;
+    color: #fff;
+}
+
+
+/* ====================== Main Song Section ====================== */
+
+.song-main {
+    display: flex;
+    align-items: center;
+    gap: 55px;
+    padding: 45px;
+    min-height: 390px;
+    border-radius: 25px;
+    background: linear-gradient(120deg, #302344, #191620 75%);
+    border: 1px solid #40334f;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+    margin-bottom: 65px;
+}
+
+.song-main > img {
+    width: 310px;
+    height: 310px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    flex-shrink: 0;
+}
+
+.song-main > div {
+    flex: 1;
+}
+
+.song-main h1 {
+    font-size: 38px;
+    margin-bottom: 18px;
+    line-height: 1.5;
+}
+
+.song-main .artistProfile {
+    display: inline-block;
+    text-decoration: none;
+    color: #b99cff;
+    margin-bottom: 30px;
+    transition: 0.25s;
+}
+
+.song-main .artistProfile:hover {
+    color: #fff;
+}
+
+.song-main h2 {
+    font-size: 19px;
+}
+
+
+/* ====================== Void Music Player ====================== */
+
+.void-player {
+    width: 100%;
+    max-width: 620px;
+    margin-top: 25px;
+    padding: 22px 25px;
+    background: linear-gradient(135deg, #241d30, #17141e);
+    border: 1px solid #49375f;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.void-player audio {
+    display: none;
+}
+
+.player-controls {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.player-play-btn {
+    width: 58px;
+    height: 58px;
+    min-width: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a78bfa, #8056bd);
+    color: #fff;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.player-play-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 22px rgba(167, 139, 250, 0.35);
+}
+
+.player-play-btn svg {
+    width: 25px;
+    height: 25px;
+}
+
+.player-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.player-progress {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    direction: ltr;
+}
+
+.player-progress span {
+    color: #bdb2cc;
+    font-size: 12px;
+    min-width: 38px;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+#progress-bar {
+    flex: 1;
+    height: 5px;
+    appearance: none;
+    border-radius: 10px;
+    background: #51445f;
+    cursor: pointer;
+    accent-color: #a78bfa;
+}
+
+#progress-bar::-webkit-slider-thumb {
+    appearance: none;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #c4aaff;
+    box-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+}
+
+#progress-bar::-moz-range-thumb {
+    width: 13px;
+    height: 13px;
+    border: none;
+    border-radius: 50%;
+    background: #c4aaff;
+}
+
+.player-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.player-volume {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #bdb2cc;
+    font-size: 12px;
+}
+
+#volume-bar {
+    width: 90px;
+    height: 4px;
+    accent-color: #a78bfa;
+    cursor: pointer;
+}
+
+.player-download {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 15px;
+    border: 1px solid #604a7d;
+    border-radius: 10px;
+    color: #c9b2ff;
+    background: rgba(128, 86, 189, 0.12);
+    text-decoration: none;
+    font-size: 12px;
+    transition: 0.25s;
+}
+
+.player-download:hover {
+    background: #8056bd;
+    color: #fff;
+    border-color: #a78bfa;
+}
+
+
+/* ====================== Playlist Form ====================== */
+
+.song-main form {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+    padding: 16px;
+    max-width: 620px;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(185, 156, 255, 0.13);
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+}
+
+.song-main form select {
+    flex: 1;
+    min-width: 170px;
+    padding: 12px 16px;
+    color: #e9e0f5;
+    background: rgba(27, 22, 36, 0.9);
+    border: 1px solid rgba(185, 156, 255, 0.2);
+    border-radius: 11px;
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.song-main form select:focus {
+    border-color: #a78bfa;
+    box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.1);
+}
+
+.song-main form select option {
+    color: #fff;
+    background: #211a2b;
+}
+
+.song-main form button {
+    padding: 12px 19px;
+    color: #fff;
+    background: linear-gradient(135deg, #8056bd, #63418f);
+    border: 1px solid rgba(195, 170, 255, 0.2);
+    border-radius: 11px;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    white-space: nowrap;
+}
+
+.song-main form button:hover {
+    background: linear-gradient(135deg, #a78bfa, #8056bd);
+    box-shadow: 0 5px 20px rgba(128, 86, 189, 0.25);
+    transform: translateY(-2px);
+}
+
+
+/* ====================== Back Button ====================== */
+
+.back-btn {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    transition: 0.3s;
+    margin-bottom: 20px;
+    display: block;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #8b5cf6;
+}
+
+
+/* ====================== Song Collections ====================== */
+
+.song-profile section:not(.song-main) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-bottom: 60px;
+}
+
+.song-profile section:not(.song-main) > h2 {
+    width: 100%;
+    font-size: 25px;
+    margin-bottom: 25px;
+    padding-right: 15px;
+    border-right: 4px solid #a78bfa;
+}
+
+
+/* ====================== Song Cards ====================== */
+
+.song-card {
+    width: 190px;
+    padding: 15px;
+    background: #19171f;
+    border: 1px solid #302b39;
+    border-radius: 16px;
+    transition: 0.25s;
+}
+
+.song-card:hover {
+    transform: translateY(-6px);
+    background: #292235;
+    border-color: #8062b5;
+}
+
+.song-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 11px;
+    margin-bottom: 13px;
+}
+
+.song-card h3 {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.song-card p {
+    color: #aaa;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.song-card a {
+    display: inline-block;
+    color: #b99cff;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.song-card a:hover {
+    color: #fff;
+}
+
+.song-profile .empty {
+    color: #999;
+    padding: 20px;
+    background: #19171f;
+    border-radius: 12px;
+}
+
+
+/* ====================== Responsive Design ====================== */
+
+@media (max-width: 750px) {
+
+    .song-profile {
+        width: 94%;
+        margin: 30px auto;
+    }
+
+    .song-main {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px;
+        gap: 25px;
+    }
+
+    .song-main > img {
+        width: 230px;
+        height: 230px;
+    }
+
+    .song-main h1 {
+        font-size: 27px;
+    }
+
+    .song-main audio {
+        width: 100%;
+    }
+
+    .void-player {
+        padding: 18px;
+    }
+
+    .player-controls {
+        gap: 15px;
+    }
+
+    .player-play-btn {
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+    }
+
+    .song-card {
+        width: calc(50% - 10px);
+    }
+}
+
+@media (max-width: 420px) {
+
+    .player-controls {
+        flex-direction: column;
+    }
+
+    .player-info {
+        width: 100%;
+    }
+
+    .player-bottom {
+        flex-wrap: wrap;
+    }
+
+    .song-main form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .song-main form select,
+    .song-main form button {
+        width: 100%;
+    }
+
+    .song-card {
+        width: 100%;
+    }
+}

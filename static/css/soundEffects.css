@@ -1,0 +1,172 @@
+.sound-effects-page {
+    width: 90%;
+    max-width: 1400px;
+    margin: 100px auto;
+    direction: rtl;
+}
+
+.sound-effects-page .container {
+    width: 100%;
+}
+
+/* ====================== Sound Effects Header ====================== */
+
+.sound-effects-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.sound-effects-page-header h1 {
+    font-size: 30px;
+    padding-right: 12px;
+    color: white;
+    border-right: 4px solid #8b5cf6;
+}
+
+/* ====================== Back Button ====================== */
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    border: 1px solid rgba(139, 92, 246, 0.4);
+    border-radius: 12px;
+    background: rgba(139, 92, 246, 0.12);
+    color: white;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background: #8b5cf6;
+    transform: translateY(-3px);
+}
+
+/* ====================== Sound Effects Grid ====================== */
+
+.sound-effects-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ====================== Sound Effect Card ====================== */
+
+.sound-effect-card {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(
+        145deg,
+        rgba(22, 23, 52, 0.95),
+        rgba(10, 10, 28, 0.95)
+    );
+    border: 1px solid rgba(139, 92, 246, 0.18);
+    border-radius: 18px;
+    transition: 0.3s;
+}
+
+.sound-effect-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(139, 92, 246, 0.5);
+    background: rgba(139, 92, 246, 0.1);
+}
+
+/* ====================== Sound Effect Cover ====================== */
+
+.sound-effect-cover {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: 14px;
+    background: rgba(139, 92, 246, 0.08);
+}
+
+.sound-effect-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ====================== Sound Effect Information ====================== */
+
+.sound-effect-card h3 {
+    width: 100%;
+    margin: 18px 0;
+    color: #eeeaff;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* ====================== Audio Player ====================== */
+
+.sound-effect-card audio {
+    width: 100%;
+    height: 40px;
+}
+
+/* ====================== Download Button ====================== */
+
+.download-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 15px;
+    padding: 11px 15px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+    color: white;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.download-btn:hover {
+    background: linear-gradient(135deg, #a78bfa, #7c3aed);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
+}
+
+/* ====================== Responsive Design ====================== */
+
+@media (max-width: 1000px) {
+    .sound-effects-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .sound-effects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+    }
+}
+
+@media (max-width: 500px) {
+    .sound-effects-page {
+        width: 95%;
+        margin: 70px auto;
+    }
+
+    .sound-effects-page-header h1 {
+        font-size: 23px;
+    }
+
+    .sound-effect-card {
+        padding: 12px;
+    }
+
+    .sound-effect-card h3 {
+        font-size: 14px;
+    }
+}

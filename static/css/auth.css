@@ -1,0 +1,133 @@
+.auth-container {
+    width: 90%;
+    max-width: 570px;
+    margin: 75px auto;
+}
+
+.auth-container .auth-back {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 18px;
+}
+
+/* ====================== Auth Page ====================== */
+
+.auth-page {
+    width: 90%;
+    max-width: 480px;
+    margin: 75px auto;
+    padding: 45px;
+    background: linear-gradient(145deg, #292033, #17141d);
+    border: 1px solid #40334f;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    color: #fff;
+}
+
+.auth-container .auth-page {
+    width: 100%;
+    margin: 0;
+}
+
+/* ====================== Auth Header ====================== */
+
+.auth-page h1 {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+/* ====================== Auth Form ====================== */
+
+.auth-page form {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.auth-page label {
+    color: #c7b4e8;
+    font-size: 14px;
+}
+
+.auth-page input {
+    width: 100%;
+    padding: 14px;
+    background: #17141d;
+    border: 1px solid #40334f;
+    border-radius: 10px;
+    color: #fff;
+    outline: none;
+    font-family: inherit;
+    transition: 0.25s;
+}
+
+.auth-page input:focus {
+    border-color: #a78bfa;
+    box-shadow: 0 0 12px rgba(167, 139, 250, 0.15);
+}
+
+/* ====================== Auth Button ====================== */
+
+.auth-page button {
+    margin-top: 15px;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(100deg, #8056bd, #a78bfa);
+    color: #fff;
+    font-family: inherit;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.auth-page button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(167, 139, 250, 0.25);
+}
+
+/* ====================== Auth Links ====================== */
+
+.auth-page p {
+    text-align: center;
+    margin-top: 25px;
+    color: #aaa;
+    font-size: 14px;
+}
+
+.auth-page a {
+    color: #b99cff;
+    text-decoration: none;
+}
+
+.auth-page a:hover {
+    color: #fff;
+}
+
+/* ====================== Auth Messages ====================== */
+
+.auth-error {
+    color: #ff8585;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* ====================== Back Button ====================== */
+
+.auth-back {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 25px;
+}
+
+/* ====================== Responsive Design ====================== */
+
+@media (max-width: 500px) {
+    .auth-page {
+        padding: 28px 22px;
+        margin: 40px auto;
+    }
+}

@@ -1,0 +1,92 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}پلی‌لیست‌ها | VOID{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/playlist.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<main class="playlist-page">
+    <button type="button" class="back-to-profile" onclick="history.back()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5"/>
+            <path d="M12 19l-7-7 7-7"/>
+        </svg>
+        <span>بازگشت</span>
+    </button>
+
+    <header class="playlist-header">
+        <span>YOUR MUSIC COLLECTION</span>
+        <h1>پلی‌لیست‌های موسیقی</h1>
+        <p>مجموعه‌ای از موسیقی‌ها برای هر حال و هر لحظه.</p>
+    </header>
+
+    <section class="playlist-section">
+
+        <div class="playlist-section-title">
+            <h2>همه پلی‌لیست‌ها</h2>
+            <span>{{ playlists.count }} پلی‌لیست</span>
+        </div>
+
+        <div class="playlist-grid">
+
+            {% for item in playlists %}
+
+                <div class="playlist-card">
+
+                    <a href="{% url 'playlist_detail' item.id %}" class="playlist-card-link">
+
+                        <div class="playlist-cover">
+                            {% if item.cover %}
+                                <img src="{{ item.cover.url }}" alt="{{ item.title }}">
+                            {% else %}
+                                <div class="playlist-no-cover">VOID</div>
+                            {% endif %}
+
+                            <div class="playlist-overlay">
+                                <span>مشاهده پلی‌لیست</span>
+                            </div>
+                        </div>
+
+                        <div class="playlist-info">
+                            <h3>{{ item.title }}</h3>
+                            <p>{{ item.songs.count }} آهنگ</p>
+                        </div>
+
+                    </a>
+
+                    <form method="POST" action="{% url 'toggle_playlist_like' item.id %}" class="playlist-like-form">
+                        {% csrf_token %}
+
+                        <button type="button"
+                                class="playlist-like-btn {% if user in item.likes.all %}liked{% endif %}"
+                                data-url="{% url 'toggle_playlist_like' item.id %}">
+                            <span>♥</span>
+                            <span class="like-count">{{ item.likes.count }}</span>
+                        </button>
+                    </form>
+
+                </div>
+
+            {% empty %}
+
+                <div class="playlist-empty">
+                    <span>✦</span>
+                    <h3>هنوز پلی‌لیستی وجود ندارد</h3>
+                    <p>به‌زودی مجموعه‌های موسیقی جدیدی اینجا قرار می‌گیرند.</p>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+</main>
+
+{% endblock %}

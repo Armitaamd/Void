@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}خواننده‌ها | Singers{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/singers.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="singers-page">
+    <div class="container">
+
+        <div class="singers-page-header">
+            <h1>همه خواننده‌ها</h1>
+            <button type="button" class="back-to-profile" onclick="history.back()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5"/>
+                    <path d="M12 19l-7-7 7-7"/>
+                </svg>
+                <span>بازگشت</span>
+            </button>
+        </div>
+
+        <div class="singers-grid">
+
+            {% for artist in artists %}
+
+                <a class="singer-card" href="{% url 'artist_detail' artist.id %}">
+
+                    <div class="singer-cover">
+                        {% if artist.image %}
+                            <img src="{{ artist.image.url }}" alt="{{ artist.name }}">
+                        {% endif %}
+                    </div>
+
+                    <div class="singer-info">
+                        <h3>{{ artist.name }}</h3>
+                    </div>
+
+                </a>
+
+            {% empty %}
+
+                <p>هنوز خواننده‌ای ثبت نشده است.</p>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
